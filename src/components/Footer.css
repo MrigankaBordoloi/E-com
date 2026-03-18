@@ -1,0 +1,185 @@
+.footer {
+    background: #080604;
+    color: #F5EDD8;
+    position: relative;
+}
+
+.footer-gold-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(212, 168, 84, 0.3) 50%, transparent 100%);
+}
+
+.footer-body { padding: 80px 0 40px; }
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.6fr;
+    gap: 48px;
+}
+
+/* ── Brand column ── */
+.footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 300;
+    letter-spacing: 0.4em; color: #F5EDD8;
+    margin-bottom: 4px;
+}
+
+.footer-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem; font-style: italic;
+    color: rgba(212, 168, 84, 0.7);
+    margin-bottom: 16px; letter-spacing: 0.03em;
+}
+
+.footer-desc {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem; font-weight: 300;
+    color: rgba(245, 237, 216, 0.45);
+    line-height: 1.85; margin-bottom: 24px;
+}
+
+/* Social */
+.social-links { display: flex; gap: 10px; }
+
+.social-link {
+    display: flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%; color: rgba(245, 237, 216, 0.65);
+    text-decoration: none; cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.social-link:hover {
+    background: rgba(212, 168, 84, 0.15);
+    border-color: rgba(212, 168, 84, 0.3);
+    color: #D4A854;
+}
+
+/* ── Column titles ── */
+.footer-col-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.62rem; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(212, 168, 84, 0.7);
+    margin-bottom: 20px;
+}
+
+/* ── Links ── */
+.footer-links {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 10px;
+}
+
+.footer-links a {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8rem; font-weight: 300;
+    color: rgba(245, 237, 216, 0.5);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    display: inline-block;
+}
+
+.footer-links a:hover { color: rgba(245, 237, 216, 0.9); padding-left: 4px; }
+
+/* ── Contact ── */
+.footer-contact-list {
+    list-style: none; padding: 0; margin: 0 0 24px;
+    display: flex; flex-direction: column; gap: 12px;
+}
+
+.footer-contact-list li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem; font-weight: 300;
+    color: rgba(245, 237, 216, 0.5);
+}
+
+.footer-contact-list li svg { flex-shrink: 0; margin-top: 2px; color: rgba(212, 168, 84, 0.6); }
+
+/* ── Newsletter ── */
+.newsletter-field {
+    display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 4px; overflow: hidden;
+    margin-bottom: 8px;
+    transition: border-color 300ms ease;
+}
+
+.newsletter-field:focus-within {
+    border-color: rgba(212, 168, 84, 0.3);
+}
+
+.newsletter-field input {
+    flex: 1; padding: 11px 14px;
+    background: transparent; border: none; outline: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem; color: #F5EDD8;
+}
+
+.newsletter-field input::placeholder { color: rgba(245, 237, 216, 0.25); }
+
+.newsletter-field button {
+    padding: 0 16px;
+    background: rgba(212, 168, 84, 0.15);
+    border: none; border-left: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(212, 168, 84, 0.8);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 300ms ease;
+}
+
+.newsletter-field button:hover {
+    background: rgba(212, 168, 84, 0.28); color: #D4A854;
+}
+
+.newsletter-note {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem; font-weight: 400;
+    color: rgba(245, 237, 216, 0.28); letter-spacing: 0.05em;
+}
+
+/* ── Bottom bar ── */
+.footer-bottom {
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-bottom-row {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+}
+
+.copyright {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem; font-weight: 300;
+    color: rgba(245, 237, 216, 0.3);
+}
+
+.footer-legal {
+    display: flex; align-items: center; gap: 12px;
+}
+
+.footer-legal a {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem; font-weight: 300;
+    color: rgba(245, 237, 216, 0.3);
+    text-decoration: none; transition: color 200ms ease;
+}
+
+.footer-legal a:hover { color: rgba(245, 237, 216, 0.65); }
+.footer-legal span { color: rgba(245, 237, 216, 0.18); font-size: 0.5rem; }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-body { padding: 60px 0 32px; }
+    .footer-bottom-row { flex-direction: column; text-align: center; }
+}

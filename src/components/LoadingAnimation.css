@@ -1,0 +1,25 @@
+.loading-container {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-muga-ivory);
+    z-index: 10000;
+    gap: var(--spacing-xl);
+}
+
+.loading-svg {
+    filter: drop-shadow(0 4px 12px rgba(201, 169, 97, 0.15));
+}
+
+.loading-text {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-lg);
+    color: var(--color-kings-gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin: 0;
+}

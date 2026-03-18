@@ -1,0 +1,277 @@
+/* ============================================================
+   StorytellingScroll — Theater Curtain Edition
+   No scroll tracking. Pure CSS compositor animations.
+   Fires once via IntersectionObserver (whileInView).
+   ============================================================ */
+
+/* ── Chapter section ── */
+.ss-ch {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 100px 0;
+}
+
+.ss-ch-dark  { background: #0F0C09; }
+.ss-ch-light { background: #F5F0E8; }
+
+/* ── Giant chapter number watermark ── */
+.ss-num-mark {
+    position: absolute;
+    right: -0.02em;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16rem, 28vw, 36rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.08em;
+    color: rgba(212, 168, 84, 0.045);
+    user-select: none;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform, opacity;
+}
+.ss-ch-light .ss-num-mark { color: rgba(100, 60, 10, 0.07); }
+
+/* ── Two-column inner layout ── */
+.ss-ch-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1380px;
+    margin: 0 auto;
+    padding: 0 80px;
+    display: grid;
+    grid-template-columns: 55fr 45fr;
+    gap: 64px;
+    align-items: center;
+}
+
+/* Flip column order for even chapters */
+.ss-ch-reversed {
+    grid-template-columns: 45fr 55fr;
+}
+.ss-ch-reversed .ss-text-col { order: 2; }
+.ss-ch-reversed .ss-image-col { order: 1; }
+
+/* ── Text column ── */
+.ss-text-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* ── Eyebrow ── */
+.ss-eyebrow {
+    display: inline-block;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    will-change: transform;
+}
+
+/* ── Title masks (overflow:hidden = curtain reveal frame) ── */
+.ss-title {
+    margin: 0 0 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.ss-title-mask {
+    overflow: hidden;
+    line-height: 1;
+}
+
+.ss-title-line {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 4.8vw, 6rem);
+    font-weight: 300;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    padding-bottom: 0.06em; /* prevents descender clip */
+    will-change: transform;
+    transform-origin: left bottom;
+}
+
+.ss-ch-dark  .ss-title-line { color: #F5EDD8; }
+.ss-ch-light .ss-title-line { color: #1A1208; }
+
+.ss-title-italic { font-style: italic; }
+
+/* ── Body ── */
+.ss-body {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.9;
+    max-width: 480px;
+    margin-bottom: 32px;
+    will-change: transform, opacity;
+}
+.ss-ch-dark  .ss-body { color: rgba(245, 237, 216, 0.55); }
+.ss-ch-light .ss-body { color: rgba(26, 18, 8, 0.62); }
+
+/* ── Accent rule ── */
+.ss-accent-rule {
+    height: 1px;
+    width: 90px;
+    transform-origin: left;
+    will-change: transform;
+}
+
+/* ── Image column (clip-path reveal applied by Framer Motion) ── */
+.ss-image-col {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    border-radius: 4px;
+    overflow: hidden;
+    will-change: clip-path;
+}
+
+.ss-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* subtle Ken Burns-style drift once loaded */
+    animation: imageDrift 18s ease-in-out infinite alternate;
+}
+
+@keyframes imageDrift {
+    0%   { transform: scale(1)    translate(0, 0); }
+    100% { transform: scale(1.04) translate(-1%, -1%); }
+}
+
+.ss-image-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.22) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+/* ── Silk-thread divider ── */
+.ss-thread-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    height: 2px;
+    overflow: visible;
+}
+
+.ss-thread-line {
+    position: absolute;
+    inset: 0;
+    transform-origin: left;
+    will-change: transform;
+}
+
+.ss-thread-gem {
+    position: relative;
+    z-index: 1;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    will-change: transform, opacity;
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+/* 1280px – 1024px: reduce padding / font */
+@media (max-width: 1280px) {
+    .ss-ch-inner { padding: 0 48px; gap: 48px; }
+    .ss-title-line { font-size: clamp(2.4rem, 4.2vw, 5rem); }
+}
+
+/* 1024px – 768px: single column, image floats above text */
+@media (max-width: 1023px) {
+    .ss-ch {
+        min-height: auto;
+        padding: 72px 0;
+        align-items: flex-start;
+    }
+
+    .ss-ch-inner {
+        grid-template-columns: 1fr;
+        padding: 0 36px;
+        gap: 36px;
+    }
+
+    /* Always image on top, text below — regardless of chapter order */
+    .ss-ch-reversed .ss-text-col  { order: 2; }
+    .ss-ch-reversed .ss-image-col { order: 1; }
+    .ss-text-col  { order: 2; }
+    .ss-image-col { order: 1; }
+
+    .ss-image-col {
+        aspect-ratio: 16 / 9;
+        border-radius: 2px;
+    }
+
+    .ss-num-mark {
+        font-size: clamp(10rem, 25vw, 20rem);
+        right: -0.05em;
+        top: auto;
+        bottom: 0;
+        transform: none;
+    }
+
+    .ss-body { max-width: 100%; }
+    .ss-title-line { font-size: clamp(2.2rem, 5.5vw, 4rem); }
+}
+
+/* 767px – 480px: portrait mobile */
+@media (max-width: 767px) {
+    .ss-ch { padding: 60px 0; }
+
+    .ss-ch-inner {
+        padding: 0 24px;
+        gap: 28px;
+    }
+
+    .ss-image-col { aspect-ratio: 4 / 3; }
+
+    .ss-title-line { font-size: clamp(2rem, 7.5vw, 3.2rem); }
+
+    .ss-body {
+        font-size: 0.84rem;
+        line-height: 1.85;
+    }
+
+    .ss-num-mark {
+        font-size: clamp(7rem, 28vw, 14rem);
+        opacity: 0.6;
+    }
+
+    .ss-thread-wrap { display: none; }
+}
+
+/* < 480px: small phones */
+@media (max-width: 479px) {
+    .ss-ch { padding: 48px 0; }
+    .ss-ch-inner { padding: 0 20px; gap: 22px; }
+    .ss-title-line { font-size: clamp(1.9rem, 9vw, 3rem); }
+    .ss-image-col { aspect-ratio: 5 / 4; }
+}
+
+/* Reduced motion: no movement, just fade */
+@media (prefers-reduced-motion: reduce) {
+    .ss-image { animation: none; }
+
+    /* Framer Motion handles this via reducedMotion feature,
+       but as a CSS safety net: */
+    .ss-title-line,
+    .ss-eyebrow { transform: none !important; }
+}

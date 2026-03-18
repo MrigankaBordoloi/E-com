@@ -1,0 +1,178 @@
+.atelier-sec {
+    background: #0F0C09;
+    padding: 120px 0;
+    position: relative; overflow: hidden;
+}
+
+.atelier-noise {
+    position: absolute; inset: 0; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px; pointer-events: none;
+}
+
+.atelier-layout {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+
+/* ── Left ── */
+.atelier-eyebrow {
+    display: inline-block;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.63rem; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(212, 168, 84, 0.7); margin-bottom: 14px;
+}
+
+.atelier-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 4vw, 3.5rem);
+    font-weight: 300; color: #F5EDD8;
+    line-height: 1.15; margin: 0 0 24px; letter-spacing: -0.01em;
+}
+
+.atelier-heading em {
+    font-style: italic;
+    background: linear-gradient(135deg, #D4A854, #F2D98A, #C9A961);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+.atelier-desc {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.875rem; font-weight: 300;
+    color: rgba(245, 237, 216, 0.58); line-height: 1.9; margin-bottom: 32px;
+}
+
+.atelier-feats {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 12px;
+}
+
+.atelier-feats li {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8rem; font-weight: 400;
+    color: rgba(245, 237, 216, 0.68); letter-spacing: 0.02em;
+}
+
+.feat-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #D4A854; flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(212, 168, 84, 0.5);
+}
+
+/* ── Glass card ── */
+.atelier-glass-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 24px;
+    padding: 48px 40px;
+    overflow: hidden;
+}
+
+.atelier-card-shine {
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 168, 84, 0.4), transparent);
+}
+
+.form-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 400;
+    color: #F5EDD8; margin-bottom: 28px; letter-spacing: 0.02em;
+}
+
+.aform-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+
+.aform-group {
+    margin-bottom: 20px;
+    display: flex; flex-direction: column; gap: 8px;
+}
+
+.aform-group label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.58rem; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(245, 237, 216, 0.45);
+}
+
+.aform-group input,
+.aform-group select,
+.aform-group textarea {
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 8px; padding: 12px 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem; color: #F5EDD8;
+    outline: none; transition: all 300ms ease;
+    -webkit-appearance: none; appearance: none;
+}
+
+.aform-group input::placeholder,
+.aform-group textarea::placeholder { color: rgba(245, 237, 216, 0.22); }
+
+.aform-group input:focus,
+.aform-group select:focus,
+.aform-group textarea:focus {
+    border-color: rgba(212, 168, 84, 0.38);
+    background: rgba(255, 255, 255, 0.085);
+    box-shadow: 0 0 0 3px rgba(212, 168, 84, 0.07);
+}
+
+.aform-group select option { background: #1A160F; color: #F5EDD8; }
+
+.aform-group textarea { resize: vertical; min-height: 100px; }
+
+.atelier-submit {
+    display: inline-flex; align-items: center; gap: 10px;
+    width: 100%; justify-content: center;
+    padding: 15px 36px;
+    background: linear-gradient(135deg, #D4A854 0%, #C9A961 50%, #A68844 100%);
+    color: #080604;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    border: none; border-radius: 4px;
+    cursor: pointer; margin-top: 4px;
+    transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.atelier-submit:hover {
+    box-shadow: 0 8px 40px rgba(212, 168, 84, 0.38);
+    transform: translateY(-2px);
+}
+
+/* ── Success ── */
+.atelier-success {
+    text-align: center; padding: 20px 0;
+}
+
+.success-icon {
+    font-size: 2rem; color: #D4A854; margin-bottom: 20px;
+}
+
+.atelier-success h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 400;
+    color: #F5EDD8; margin-bottom: 12px;
+}
+
+.atelier-success p {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem;
+    color: rgba(245, 237, 216, 0.6); line-height: 1.7;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+    .atelier-layout { grid-template-columns: 1fr; gap: 48px; }
+    .atelier-sec { padding: 80px 0; }
+}
+
+@media (max-width: 640px) {
+    .atelier-glass-card { padding: 32px 24px; }
+    .aform-row { grid-template-columns: 1fr; }
+}

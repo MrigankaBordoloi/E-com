@@ -1,0 +1,364 @@
+/* ============================================================
+   Liquid Glass Hero — Mind-Bending Edition
+   ============================================================ */
+
+.lg-hero {
+    position: relative;
+    min-height: 100svh;
+    background: #080604;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* ── Curtain reveal ── */
+.lg-curtain {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #0A0806 0%, #1C1208 100%);
+    z-index: 50;
+    pointer-events: none;
+}
+
+/* ── Background Blobs ── */
+.lg-blobs {
+    position: absolute; inset: 0;
+    z-index: 0; pointer-events: none;
+}
+
+.lg-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(110px);
+    animation: blobDrift 22s ease-in-out infinite;
+    will-change: transform;
+}
+
+.lg-blob-gold {
+    width: 720px; height: 720px;
+    background: radial-gradient(circle, rgba(212, 168, 84, 0.30) 0%, transparent 70%);
+    top: -180px; left: -200px;
+}
+.lg-blob-red {
+    width: 540px; height: 540px;
+    background: radial-gradient(circle, rgba(193, 68, 14, 0.20) 0%, transparent 70%);
+    bottom: -130px; right: -160px;
+    animation-delay: -5s; animation-duration: 26s;
+}
+.lg-blob-silk {
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(180, 145, 100, 0.14) 0%, transparent 70%);
+    top: 38%; right: 8%;
+    animation-delay: -8s; animation-duration: 30s;
+}
+.lg-blob-teal {
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(80, 160, 185, 0.09) 0%, transparent 70%);
+    bottom: 22%; left: 10%;
+    animation-delay: -12s; animation-duration: 24s;
+}
+.lg-blob-deep {
+    width: 600px; height: 380px;
+    background: radial-gradient(ellipse, rgba(150, 80, 20, 0.11) 0%, transparent 70%);
+    bottom: 0; left: 28%;
+    animation-delay: -16s; animation-duration: 34s;
+}
+
+@keyframes blobDrift {
+    0%   { transform: translate(0, 0)        scale(1);    }
+    25%  { transform: translate(34px, -46px) scale(1.07); }
+    50%  { transform: translate(-24px, 32px) scale(0.94); }
+    75%  { transform: translate(42px,  22px) scale(1.04); }
+    100% { transform: translate(0, 0)        scale(1);    }
+}
+
+/* ── Rising gold particles ── */
+.lg-particles {
+    position: absolute; inset: 0;
+    z-index: 1; pointer-events: none;
+}
+
+.lg-particle {
+    position: absolute;
+    bottom: -8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212, 168, 84, 0.95) 0%, transparent 70%);
+    animation: particleRise linear infinite;
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+@keyframes particleRise {
+    0%   { transform: translateY(0)      translateX(0);              opacity: 0;   }
+    6%   {                                                            opacity: 0.9; }
+    88%  {                                                            opacity: 0.1; }
+    100% { transform: translateY(-100vh) translateX(var(--drift-x)); opacity: 0;   }
+}
+
+/* ── Grain ── */
+.lg-grain {
+    position: absolute; inset: 0; z-index: 2;
+    opacity: 0.04; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+}
+
+/* ── Top iridescent line ── */
+.lg-line-top {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(212, 168, 84, 0.38) 50%, transparent 100%);
+    z-index: 3;
+}
+
+/* ── VAASTRA watermark ── */
+.lg-watermark {
+    position: absolute; inset: 0; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(15vw, 21vw, 28vw);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(245, 237, 216, 0.030);
+    user-select: none; pointer-events: none;
+    animation: watermarkBreath 12s ease-in-out infinite alternate;
+}
+
+@keyframes watermarkBreath {
+    0%   { transform: scale(1);    }
+    100% { transform: scale(1.05); }
+}
+
+/* ── Floating glass panels ── */
+.lg-panel {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 18px;
+    padding: 26px 30px;
+    display: flex; flex-direction: column; gap: 5px;
+    z-index: 8; min-width: 155px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.lg-panel::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 168, 84, 0.55), transparent);
+    border-radius: 18px 18px 0 0;
+}
+
+.lg-panel-left  { left: 5%;  top: 50%; transform: translateY(-50%); }
+.lg-panel-right { right: 5%; top: 44%; transform: translateY(-50%); }
+
+.panel-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(212, 168, 84, 0.75);
+}
+.panel-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 400;
+    color: #F5EDD8; letter-spacing: 0.02em; line-height: 1.2;
+}
+.panel-sub {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.65rem;
+    color: rgba(245, 237, 216, 0.45); letter-spacing: 0.1em;
+}
+.panel-pulse {
+    width: 7px; height: 7px;
+    border-radius: 50%; background: #D4A854;
+    margin-top: 12px;
+    box-shadow: 0 0 8px rgba(212, 168, 84, 0.65);
+    animation: pulseDot 2.2s ease-in-out infinite;
+}
+@keyframes pulseDot {
+    0%, 100% { opacity: 1;    box-shadow: 0 0 8px  rgba(212, 168, 84, 0.65); }
+    50%       { opacity: 0.55; box-shadow: 0 0 20px rgba(212, 168, 84, 0.22); }
+}
+
+/* ── Main content ── */
+.lg-content {
+    position: relative; z-index: 6;
+    text-align: center;
+    max-width: 920px;
+    padding: 0 28px;
+}
+
+/* ── Eyebrow ── */
+.lg-eyebrow {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(212, 168, 84, 0.85);
+    margin-bottom: 30px;
+}
+.eyebrow-gem {
+    width: 5px; height: 5px;
+    background: rgba(212, 168, 84, 0.75);
+    border-radius: 50%; display: inline-block;
+}
+
+/* ── Headline — word split with 3D flip ── */
+.lg-headline {
+    display: flex; flex-wrap: wrap;
+    align-items: baseline; justify-content: center;
+    gap: 0 0.28em;
+    margin: 0 0 26px;
+    transform-style: preserve-3d;
+    line-height: 1.08;
+}
+
+.hw-word {
+    display: inline-block;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+.hw-plain {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8.5vw, 7.2rem);
+    font-weight: 300; color: #F5EDD8;
+    letter-spacing: -0.02em;
+}
+.hw-italic {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8.5vw, 7.2rem);
+    font-weight: 300; font-style: italic;
+    background: linear-gradient(125deg, #D4A854 0%, #F2D98A 40%, #C9A961 70%, #A68844 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    letter-spacing: -0.02em;
+}
+.hw-bold {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8.5vw, 7.2rem);
+    font-weight: 600; color: #F5EDD8;
+    letter-spacing: 0.04em;
+}
+
+/* ── Expanding gold rule ── */
+.lg-rule {
+    height: 1px; width: 110px;
+    background: linear-gradient(90deg, transparent, #D4A854 50%, transparent);
+    transform-origin: center;
+    margin: 0 auto 26px;
+}
+
+/* ── Subtitle ── */
+.lg-subtitle {
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(0.85rem, 1.6vw, 1rem);
+    font-weight: 300; line-height: 1.85;
+    color: rgba(245, 237, 216, 0.55);
+    max-width: 540px; margin: 0 auto 44px;
+    letter-spacing: 0.025em;
+}
+
+/* ── CTAs ── */
+.lg-ctas {
+    display: flex; align-items: center; justify-content: center;
+    gap: 16px; flex-wrap: wrap; margin-bottom: 64px;
+}
+
+.cta-gold {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #D4A854 0%, #C9A961 50%, #A68844 100%);
+    color: #080604;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    text-decoration: none; border-radius: 2px;
+    box-shadow: 0 4px 22px rgba(212, 168, 84, 0.3);
+    transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+    cursor: pointer; position: relative; overflow: hidden;
+}
+.cta-gold::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+    opacity: 0; transition: opacity 300ms;
+}
+.cta-gold:hover { box-shadow: 0 10px 44px rgba(212, 168, 84, 0.50); transform: translateY(-3px); }
+.cta-gold:hover::after { opacity: 1; }
+
+.cta-glass {
+    display: inline-flex; align-items: center;
+    padding: 15px 40px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: rgba(245, 237, 216, 0.85);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem; font-weight: 400;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    text-decoration: none; border-radius: 2px;
+    transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+    cursor: pointer;
+}
+.cta-glass:hover {
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(212, 168, 84, 0.35);
+    color: #D4A854; transform: translateY(-3px);
+}
+
+/* ── Stats ── */
+.lg-stats { display: flex; align-items: center; justify-content: center; gap: 36px; }
+.stat-item { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 400;
+    color: #D4A854; letter-spacing: 0.02em; line-height: 1;
+}
+.stat-lbl {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem; font-weight: 400;
+    color: rgba(245, 237, 216, 0.4);
+    letter-spacing: 0.15em; text-transform: uppercase;
+}
+.stat-bar { width: 1px; height: 34px; background: rgba(255, 255, 255, 0.1); }
+
+/* ── Scroll hint ── */
+.lg-scroll-hint {
+    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    z-index: 8;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: rgba(245, 237, 216, 0.35);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase;
+}
+.lg-scroll-line {
+    width: 1px; height: 44px;
+    background: linear-gradient(to bottom, rgba(212, 168, 84, 0.85), transparent);
+    animation: scrollLinePulse 2.6s ease-in-out infinite;
+}
+@keyframes scrollLinePulse {
+    0%   { transform: scaleY(0); transform-origin: top;    opacity: 0; }
+    50%  { transform: scaleY(1); transform-origin: top;    opacity: 1; }
+    51%  {                        transform-origin: bottom;             }
+    100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 1280px) {
+    .lg-panel-left, .lg-panel-right { display: none; }
+}
+@media (max-width: 768px) {
+    .lg-headline { gap: 0 0.22em; }
+    .hw-plain, .hw-italic, .hw-bold { font-size: clamp(2.4rem, 11vw, 4rem); }
+    .lg-stats { gap: 20px; }
+    .lg-ctas { flex-direction: column; align-items: stretch; }
+    .cta-gold, .cta-glass { justify-content: center; }
+    .lg-content { padding: 0 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .lg-blob, .lg-particle, .lg-watermark,
+    .panel-pulse, .lg-scroll-line { animation: none; }
+    .hw-word { transform: none !important; opacity: 1 !important; }
+}

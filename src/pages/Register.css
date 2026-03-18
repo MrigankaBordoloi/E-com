@@ -1,0 +1,10 @@
+/* Reuse Login.css for Register page */
+@import './Login.css';
+
+.error-text {
+    display: block;
+    font-size: 11px;
+    color: var(--color-vermillion);
+    margin-top: var(--spacing-xs);
+    font-weight: 400;
+}

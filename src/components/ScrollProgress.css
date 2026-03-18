@@ -1,0 +1,9 @@
+.spb {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #C1440E 0%, #D4A854 50%, #F2D98A 100%);
+    transform-origin: 0%;
+    z-index: 9999;
+    pointer-events: none;
+}

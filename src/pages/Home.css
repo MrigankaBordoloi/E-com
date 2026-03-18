@@ -1,0 +1,7 @@
+/* Home page wrapper — no top padding; hero is full-screen.
+   NOTE: overflow-x:clip instead of hidden — clip does NOT create a new
+   scroll container, so position:sticky inside still works. */
+.home-page {
+    background: #080604;
+    overflow-x: clip;
+}

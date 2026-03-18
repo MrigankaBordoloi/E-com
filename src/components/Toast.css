@@ -1,0 +1,102 @@
+.toast-container {
+    position: fixed;
+    top: var(--spacing-xl);
+    right: var(--spacing-xl);
+    z-index: var(--z-tooltip);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    max-width: 400px;
+    width: 100%;
+    pointer-events: none;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    pointer-events: all;
+    border-left: 4px solid;
+    min-height: 60px;
+}
+
+.toast-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toast-message {
+    flex: 1;
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    color: var(--color-charcoal);
+}
+
+.toast-close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    padding: var(--spacing-xs);
+    cursor: pointer;
+    color: var(--color-dark-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.toast-close:hover {
+    background: var(--color-light-gray);
+    color: var(--color-charcoal);
+}
+
+/* Toast Types */
+.toast-success {
+    border-left-color: var(--color-success);
+}
+
+.toast-success .toast-icon {
+    color: var(--color-success);
+}
+
+.toast-error {
+    border-left-color: var(--color-error);
+}
+
+.toast-error .toast-icon {
+    color: var(--color-error);
+}
+
+.toast-warning {
+    border-left-color: var(--color-warning);
+}
+
+.toast-warning .toast-icon {
+    color: var(--color-warning);
+}
+
+.toast-info {
+    border-left-color: var(--color-info);
+}
+
+.toast-info .toast-icon {
+    color: var(--color-info);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .toast-container {
+        top: var(--spacing-md);
+        right: var(--spacing-md);
+        left: var(--spacing-md);
+        max-width: none;
+    }
+}
